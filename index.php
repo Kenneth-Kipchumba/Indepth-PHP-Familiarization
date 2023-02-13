@@ -1,42 +1,24 @@
 <?php
 
-require 'config/router.php';    
+require 'config/router.php';
+
+
 include('./helpers/functions.php');
+require 'Database.php';
 
 routeToController($uri, $routes);
 
-/**
- * Database Class
- */
-class Database
-{
-	public $pdo;
-
-	public function __construct()
-	{
-		// Database Connect
-		$dsn = "mysql:host=localhost;port=3306;dbname=PHP_CRUD;charset=utf8mb4";
-
-		$this->pdo = new PDO($dsn, 'ronow', 'TW3nty@17');
-	}
-
-	// Database Query
-	function query($statement)
-	{
-		$prepared_statement = $this->pdo->prepare($statement);
-
-		$prepared_statement->execute();	
-
-		return $prepared_statement->fetchAll(PDO::FETCH_ASSOC);
-	}
-}
+require 'config/database.php';
 
 
-$db = new Database();
+//Configuration values found in the config/database.php file
+$db = new Database($config['database'],$user,$pass);
 
 $statement = "SELECT * FROM posts";
 
-$posts = $db->query($statement);
+$posts = $db->query($statement)->fetchAll(PDO::FETCH_ASSOC);
+
+dd($posts);
 
 echo "<ol>";
 	foreach ($posts as $post) {
