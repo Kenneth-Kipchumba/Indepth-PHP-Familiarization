@@ -39,15 +39,11 @@ function not_found($error_code = 404)
 }
 
 /**
- * Route requests to controller
- * 
- * @param $uri, $routes
+ * Check url segment
  */
-function routeToController($uri = '/', $routes)
+function urlIs($segment)
 {
-	if (array_key_exists($uri, $routes)) {
-		require $routes[$uri];
-	}else{
-		not_found(422);
-	}
+	$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+	return $uri === $segment;
 }

@@ -13,7 +13,7 @@ class Database
 		// Database Connect
 		$dsn2 = 'mysql:' . http_build_query($config,'',';');
 
-		dd($dsn2);
+		//dd($dsn2);
 
 		try {
 			$this->pdo = new PDO($dsn2,$user,$pass);

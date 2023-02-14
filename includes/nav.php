@@ -5,15 +5,19 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link<?= urlIs('/') ? ' text-primary' : ''?>" href="/">Home</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="about">About Us</a>
+          <a class="nav-link<?= urlIs('/notes') ? ' text-primary' : ''?>" href="/notes">Notes</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Another Link</a>
+          <a class="nav-link<?= urlIs('/about') ? ' text-primary' : ''?>" href="about">About Us</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link<?= urlIs('/notes') ? ' text-primary' : ''?>" href="#">Another Link</a>
         </li>
       </ul>
     </div>
