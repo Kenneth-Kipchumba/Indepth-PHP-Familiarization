@@ -17,20 +17,21 @@ function dd($value)
 * 
 * For Example:
 * 
-* not_found(status_code);
+* abort('Error Message', status_code);
 */
-function not_found($error_code = 404)
+function abort(string $error_msg = 'Not Found', int $error_code = 404)
 {
 	if (! ($error_code === 404)) {
 		http_response_code($error_code);
 
-		$error_msg = "$error_code. There was an error";
+		$error_msg = "$error_code . $error_msg";
 
 		require "views/general_errors.php";
+		die();
 	} else {
 		http_response_code($error_code);
 
-		$error_msg = "$error_code. Not Found";
+		$error_msg = "$error_code. $error_msg";
 
 		require "views/$error_code.php";
 		die();

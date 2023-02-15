@@ -11,4 +11,4 @@ $notes = $db->query($statement)->fetchAll(PDO::FETCH_ASSOC);
 
 //dd($notes);
 
-require 'views/notes.php';
+require 'views/notes.view.php';
