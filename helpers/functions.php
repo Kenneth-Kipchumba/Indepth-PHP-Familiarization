@@ -19,7 +19,7 @@ function dd($value)
 * 
 * abort('Error Message', status_code);
 */
-function abort(string $error_msg = 'Not Found', int $error_code = 404)
+function abort(int $error_code = 404, string $error_msg = 'Not Found')
 {
 	if (! ($error_code === 404)) {
 		http_response_code($error_code);
@@ -37,6 +37,16 @@ function abort(string $error_msg = 'Not Found', int $error_code = 404)
 		die();
 	}
 	
+}
+
+/**
+ * Authorize
+ */
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+	if (! $condition) {
+		abort($status);
+	}
 }
 
 /**

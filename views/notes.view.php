@@ -4,6 +4,7 @@ include('./includes/nav.php');
 
 ?>
 
+<!-- <?= dd($notes) ?> -->
 <div class="table-responsive-sm">          
   <table class="table table-bordered">
     <thead>

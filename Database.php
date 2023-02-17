@@ -6,6 +6,7 @@ require 'config/database.php';
 class Database
 {
 	public $pdo;
+	public $prepared_statement;
 
 	public function __construct($config,$user,$pass)
 	{
@@ -27,10 +28,33 @@ class Database
 	// Database Query
 	function query($statement)
 	{
-		$prepared_statement = $this->pdo->prepare($statement);
+		$this->prepared_statement = $this->pdo->prepare($statement);
 
-		$prepared_statement->execute();	
+		$this->prepared_statement->execute();	
 
-		return $prepared_statement;
+		return $this;
+	}
+
+	function find()
+	{
+		return $this->prepared_statement->fetch();
+	}
+
+	public function findOrFail()
+	{
+		$result = $this->find();
+
+		if ( ! $result) {
+			abort(Response::NOT_FOUND, 'Not Found');
+		}
+
+		return $result;
+	}
+
+	public function get()
+	{
+		//$notes = $db->query($statement)->find(PDO::FETCH_ASSOC);
+
+		return $this->prepared_statement->fetchAll();
 	}
 }
