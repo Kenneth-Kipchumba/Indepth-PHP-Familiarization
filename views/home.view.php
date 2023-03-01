@@ -12,7 +12,7 @@ $db = new Database($config['database'],$user,$pass);
 
 $statement = "SELECT * FROM posts";
 
-$posts = $db->query($statement)->fetchAll(PDO::FETCH_ASSOC);
+$posts = $db->query($statement)->get(PDO::FETCH_ASSOC);
 
 //dd($posts);
 if ($posts) {
